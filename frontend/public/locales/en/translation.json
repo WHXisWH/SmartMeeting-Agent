@@ -1,0 +1,264 @@
+{
+  "nav": {
+    "navigation": "Navigation",
+    "dashboard": "Dashboard",
+    "activityLog": "Activity Log",
+    "teamInsights": "Team Insights",
+    "knowledge": "Knowledge",
+    "gmail": "Gmail",
+    "drive": "Drive",
+    "speech": "Speech",
+    "settings": "Settings"
+  },
+  "dashboard": {
+    "header": {
+      "title": "SmartMeet Agent",
+      "subtitle": "— Cockpit for your digital colleague",
+      "proposeMeeting": "Propose a meeting",
+      "connectedToGoogle": "Connected to Google {{email}}",
+      "connectToGoogle": "Connect to Google"
+    },
+    "agentStatus": {
+      "title": "🤖 Agent Status",
+      "running": "🟢 AUTONOMOUSLY RUNNING",
+      "inactive": "🔴 INACTIVE",
+      "start": "Start",
+      "stop": "Stop",
+      "status": "Status:",
+      "heroBadge": {
+        "running": "🟢 Autonomously running",
+        "waiting": "🟡 Waiting for command",
+        "initializing": "🟡 Initializing",
+        "stopped": "🔴 Not started"
+      }
+    },
+    "keyMetrics": {
+      "title": "Key Metrics",
+      "timeSaved": "Time Saved",
+      "meetingsOptimized": "Meetings Optimized",
+      "conflictsResolved": "Conflicts Resolved",
+      "teamSatisfaction": "Team Satisfaction",
+      "unitHours": "hours"
+    },
+    "kpi": {
+        "timeSaved": "Time Saved on Meetings",
+        "meetingsOptimized": "Meetings Optimized",
+        "conflictsResolved": "Schedule Conflicts Resolved",
+        "teamSatisfaction": "Team Satisfaction",
+        "unitHours": "{{count}} hours",
+        "unitCount": "{{count}}",
+        "unitTimes": "{{count}} times",
+        "unitSatisfaction": "{{count}}/5"
+    },
+    "activityLog": {
+      "title": "📝 Activity Log"
+    },
+    "latestDecision": {
+      "title": "🎯 Latest Decision",
+      "action": "🎯 Latest Decision: {{action}}",
+      "noDecision": "No decisions made yet.",
+      "confidence": "Confidence:",
+      "reasoning": "Reasoning:",
+      "noExplanation": "No explanation provided.",
+      "alternatives": "Alternatives Considered:"
+    },
+    "chat": {
+      "title": "💬 Chat with Agent",
+      "error": "Sorry, I encountered an error.",
+      "send": "Send"
+    },
+    "meetingHealth": {
+      "title": "📊 Meeting Health",
+      "health": "Health",
+      "gap": "Gap",
+      "basedOnSatisfaction": "Approximate metric based on satisfaction"
+    },
+    "decisionHub": {
+      "title": "[!] Action Required",
+      "defaultSuggestion": "Suggestion: Review recent meeting schedule",
+      "defaultReason": "Agent suggests optimization, confidence is low, your confirmation is required.",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "promptAction": "Please enter the modified action name",
+      "promptReason": "Please enter the reason for modification",
+      "submitted": "Modification submitted",
+      "confidence": "Confidence: {{confidence}}%",
+      "approve": "Approve",
+      "modify": "Modify",
+      "reject": "Reject",
+      "viewReasoning": "View full reasoning"
+    },
+    "suggestions": {
+        "title": "🧭 Suggestions Pending Approval",
+        "lastRefreshed": "Last refreshed: {{time}}",
+        "loading": "Loading...",
+        "noSuggestions": "No suggestions yet. You can start by sending an email in Gmail that requires discussion/review/alignment to trigger the backend orchestration.",
+        "noSubject": "(No subject)",
+        "status": {
+            "pending": "Pending Approval",
+            "sent": "Candidates sent",
+            "confirmed": "Confirmed, option {{index}}",
+            "needsConfirmation": "Requires confirmation from others",
+            "mutualAvailability": "Mutual availability"
+        },
+        "time": "Time: {{start}} ~ {{end}} ({{timezone}})",
+        "confidence": "Confidence",
+        "candidates": "Candidate slots:",
+        "approvedAndCreated": "Approved and meeting created",
+        "rejected": "Suggestion rejected",
+        "sendCandidates": "Send candidates to attendees",
+        "sendFailed": "Failed to send",
+        "meeting": "Meeting",
+        "confirmationLinks": "Confirmation links (copy and send to attendees):",
+        "copy": "Copy"
+    },
+    "activityStream": {
+        "title": "🕒 Real-time Activity Stream"
+    },
+    "calendarPreview": {
+        "title": "📅 Calendar Preview",
+        "notConnected": "Not connected to Google. Please click \"Connect to Google\" in the top right.",
+        "noEvents": "No upcoming events",
+        "noTitle": "(No title)"
+    },
+    "quickCreate": {
+        "title": "⚡ Quickly Create Meeting (with Meet)",
+        "subject": "Subject",
+        "minutes": "{{count}} minutes",
+        "timezonePlaceholder": "Timezone (IANA), e.g., Asia/Tokyo",
+        "attendeesPlaceholder": "Attendee emails, comma-separated",
+        "promptStartTime": "Please select a start time",
+        "created": "Meeting created",
+        "meetLink": ", Meet: {{link}}",
+        "createFailed": "Creation failed, please check time format and permissions",
+        "createMeeting": "Create Meeting"
+    }
+  },
+  "activityLogPage": {
+    "subtitle": "— Activity Log",
+    "user": "User"
+  },
+  "drivePage": {
+    "subtitle": "— Drive",
+    "fileList": "File List",
+    "searchPlaceholder": "Search syntax (q)",
+    "search": "Search",
+    "modified": "Modified: {{time}}",
+    "uploadFile": "Upload File",
+    "fileName": "File Name",
+    "selectFilePrompt": "Please select a file",
+    "uploadSuccess": "Upload successful",
+    "upload": "Upload",
+    "fileDetails": "File Details / Share",
+    "open": "Open",
+    "permissionSet": "Set to anyone=reader",
+    "setPublic": "Set to public read"
+  },
+  "gmailPage": {
+    "subtitle": "— Gmail",
+    "inbox": "Inbox",
+    "nextPage": "Next Page",
+    "emailDetails": "Email Details",
+    "selectEmailPrompt": "Please select an email",
+    "compose": "Compose",
+    "to": "To",
+    "subject": "Subject",
+    "htmlBody": "HTML Body",
+    "recipientPrompt": "Please enter a recipient",
+    "sent": "Sent",
+    "send": "Send",
+    "hello": "<p>Hello</p>"
+  },
+  "insightsPage": {
+    "subtitle": "— Team Insights",
+    "meetingPatterns": "📅 Meeting Pattern Analysis",
+    "meetingPatternsSuggestion": "40% of your team's meetings are on Thursdays. Consider spreading them out to improve efficiency.",
+    "decisionBottlenecks": "👥 Decision Bottleneck Identification",
+    "attendeeCount": "Number of Attendees",
+    "decisionBottlenecksSuggestion": "Decision-making rate drops significantly when there are more than 5 attendees. Consider splitting into sub-topics or reducing the number of participants."
+  },
+  "knowledgePage": {
+    "subtitle": "— Knowledge Base",
+    "title": "📚 Knowledge Entries",
+    "semanticKnowledge": "Semantic Knowledge",
+    "proceduralKnowledge": "Procedural Knowledge"
+  },
+  "knowledgeCategories": {
+    "meeting_rules": "Meeting Rules",
+    "best_practices": "Best Practices",
+    "common_requests": "Common Requests"
+  },
+  "settingsPage": {
+    "subtitle": "— Settings",
+    "saveSuccess": "Settings saved (local storage). Backend policy linkage can be connected later.",
+    "autonomyLevel": "🧭 Autonomy Level",
+    "level1": "L1: Suggestions only",
+    "level2": "L2: Semi-autonomous",
+    "level3": "L3: Fully autonomous",
+    "decisionPreferences": "⚙️ Decision Preferences",
+    "autoCancel": "Allow automatic cancellation of inefficient meetings",
+    "autoReschedule": "Allow autonomous rescheduling of conflicting meetings",
+    "notifyOnBlockers": "Allow proactive notification to owners when tasks are blocked",
+    "saveSettings": "Save Settings"
+  },
+  "speechPage": {
+    "subtitle": "— Speech to Text",
+    "realtimeTab": "Real-time Speech to Text",
+    "uploadTab": "Upload Audio File",
+    "realtimeDescription": "Real-time recording and transcription via microphone, suitable for live scenarios such as meetings and interviews.",
+    "unsupportedRecording": "The current browser does not support recording",
+    "noContent": "(No content)",
+    "unsupportedWebSpeech": "(Real-time caption preview is not available: Browser does not support Web Speech API)",
+    "startRecording": "Start Recording",
+    "stopAndTranscribe": "Stop and Transcribe",
+    "duration": "Recording duration: {{seconds}}s",
+    "language": "Language:",
+    "captionSupport": "Browser real-time caption support:",
+    "available": "Available",
+    "unavailable": "Unavailable",
+    "liveCaptions": "Real-time Captions",
+    "liveCaptionsPlaceholder": "(After starting recording, the recognized text from the beginning to the present will be continuously displayed)",
+    "uploadDescription": "Upload local audio files for transcription, supporting common formats such as WAV, MP3, M4A.",
+    "selectAudioFile": "Please select an audio file",
+    "transcribing": "Transcribing...",
+    "startTranscription": "Start Transcription",
+    "transcriptionResult": "Transcription Result",
+    "resultPlaceholder": "(The final transcription result will be displayed here)",
+    "openMinutes": "Open generated meeting minutes (Google Docs)",
+    "noValidContent": "No valid transcription content",
+    "generationFailed": "Failed to generate minutes, please confirm that you are connected to Google and try again later",
+    "generateMinutes": "Generate Meeting Minutes",
+    "generateMindMap": "🧠 Generate Mind Map",
+    "mindMapFailed": "Mind map generation failed",
+    "mindmap": {
+      "title": "Mind Map",
+      "generatedAt": "Generated At",
+      "errorTitle": "Failed to generate mind map",
+      "retry": "Regenerate",
+      "placeholder": "After starting recording/transcription, the mind map will appear here",
+      "generating": "Generating mind map..."
+    }
+  },
+  "proposalModal": {
+    "title": "Meeting Proposal Preview",
+    "subject": "Subject:",
+    "attendees": "Attendees (comma-separated):",
+    "duration": "Duration (minutes):",
+    "window": "Time window (hours):",
+    "candidates": "Number of candidates:",
+    "generating": "Generating...",
+    "generate": "Generate Proposal",
+    "candidateSlots": "Candidate Slots",
+    "noSlots": "No suitable time slots found, please adjust the parameters and generate again",
+    "materials": "Related Materials (optional)",
+    "noFiles": "No related files found",
+    "close": "Close",
+    "creating": "Creating...",
+    "confirm": "Confirm and Create",
+    "generationFailed": "Failed to generate proposal",
+    "selectSlot": "Please select a time slot",
+    "meeting": "Meeting",
+    "createSuccess": "Meeting created and confirmation email sent",
+    "createFailed": "Creation failed"
+  }
+}

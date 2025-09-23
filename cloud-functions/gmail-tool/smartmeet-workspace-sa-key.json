@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "smartmeet-470807",
+  "private_key_id": "e2bbe3c2552aed3d1b99b44374079e07d7f228f0",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDenPaMkPGXBUUK\nRzl+jOUEbweZjI/J+OLdZVwwj7kPPRPuUwbgGq/N6mTBBB8o3QwKF0z2DZu0cANo\n6ukfsZA1ABENVNtO3j2Md9Vz7SoPBjAzMQhEV2k5G/WB+kn4ZJG6QTyyYrP+O9ax\nUkKSdIV8/lMBurkRny9ZuI+R7vHsGH46oVFMNvgg7U8e7jEVKhP0e2UbnNiRhnhV\nKjmD2fnBeLyKxc63oxQRGJxL6bFzEPHoCxOqxhpj6H/QCMtGT+4ml9RQudNiVjoQ\nxtXp/K4IdYfL0VMkTahzEKREwsi7XYX3YGtUgzwI+w6EGC/iVlz8xXduoaoQZyLP\nqsQ6PyyTAgMBAAECggEAAfRhYzO03LqOo16uumwfPGaDQhd/NZ+x83edMgAiczBI\nDukUf88nTra4znKebPyZy0mVhbaCs5yqx4TsVk7cKkmTu1xzrvEeFjAMN56UIPXn\nQPY/uxKVD7hO6KEJZzur3oCpnXeIT2cGJVfTsNtWBAWuxrmtHpS1RvydNyUd6QWX\n7W+WNkU6gfL01+M1IUiVlkkXLquN6oKM/ywPjkGFW23tHOpkmqx+tME7wpiu1uJl\neyd2fGoSPf6ZmbFqQRR74YV7yv6RxnDckdTlCRmN0mK+QkozuCBkHKUOSt0N0IoI\nYk81GpmOUtBVl05c0zR2bfBsNTJD7tu+gNO6vIBIUQKBgQDzYux/YZcyhrIsRWwB\n8q/GjcpuvJjSjK/KldVW7suEqgpXFrvlXtidZ2xcbB6UBCPFk/ySBTNkvFzcIA2C\nQ9PDAh5kb+Gj2eQ3BlL09aFzOfoWmPHGoPDKRP32wcUMP1C8C5TX02dyf4fagPNV\nA6gIKKYvZ9uPkD1EpM96dYxZWwKBgQDqJm8rRAX2Dd4h3+NpbX/kVOxjPclATvIE\nPFFK2l2k7bzhLmSSRnLYrUwogbAN3I1rUIXHUMw7krTOhGBazCbndc2D3ACZKJwA\nBkLxYP5D3c057AxStN6b6ltqLVev+g7QsYr2Qcb8B+PyCiqoTp/VENPCoorgdNFP\noPS+b/gnKQKBgCigztHEvLSWf4+cVxdMJ8OBT9WEbg5XpdCvillkq1yN9gPrq5ny\nZz5/UTtsYP5cYoxM09CcRaP/PZERWK/yGptm8yPY+VWcvdfhml+B0V2mw/SZu2Jo\n40kgkzRpzDbrKtL5K/OLOq2GVGtJM1Vxss8J2hP3xlMExPV8fZX3oWIZAoGAFO7Y\ns3KCYev9duPQLeW3ME+TTpAAhPpJ0q0dy2ZYRt1mLG98WENqEwrzKw/lEGguUHDD\ndP05NP45odjd0GA9/iVe+THa79Zck/f7Vh8IvEKBDXOX6nD3EdNS1tw04aumVWv5\n82gQBQoji8jy5VcaHO9DLzxe1BA9gjPujXPvKHkCgYEAgkcjqmEDL2vb/TxV3rMX\njJvfzCLP+hBKf4e5/DqXWp9Ih7y3Pmq56JQd9pFhin2czYi+znHC1uxTJh1s7j7B\n9T5u8U3hENzQyicwrCGlOfkTsJArm6xWko6YmAvMWpvxxaoIwIEdKp2JWOPq9o7b\norigHBs6TYlV8j9889vEzLY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "smartmeet-workspace-sa@smartmeet-470807.iam.gserviceaccount.com",
+  "client_id": "102238500700711957204",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/smartmeet-workspace-sa%40smartmeet-470807.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

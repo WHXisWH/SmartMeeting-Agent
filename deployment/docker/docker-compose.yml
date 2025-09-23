@@ -1,0 +1,109 @@
+version: '3.8'
+
+services:
+  # Frontend service
+  frontend:
+    build:
+      context: ../../
+      dockerfile: deployment/docker/Dockerfile.frontend
+    container_name: smartmeet-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    networks:
+      - smartmeet-network
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Backend service
+  backend:
+    build:
+      context: ../../
+      dockerfile: deployment/docker/Dockerfile.backend
+    container_name: smartmeet-backend
+    ports:
+      - "8080:8080"
+    networks:
+      - smartmeet-network
+    environment:
+      - NODE_ENV=production
+      - PORT=8080
+      - LOG_LEVEL=info
+      # Google Cloud configuration needs to be obtained from environment variables or secrets
+      - GOOGLE_CLOUD_PROJECT_ID=${GOOGLE_CLOUD_PROJECT_ID}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - GOOGLE_REDIRECT_URI=${GOOGLE_REDIRECT_URI}
+      - VERTEX_AI_LOCATION=${VERTEX_AI_LOCATION:-asia-northeast1}
+      - WEBHOOK_BASE_URL=${WEBHOOK_BASE_URL}
+      - WEBHOOK_TOKEN=${WEBHOOK_TOKEN}
+      - JWT_SECRET=${JWT_SECRET}
+      - AGENT_AUTONOMY_LEVEL=${AGENT_AUTONOMY_LEVEL:-0.7}
+    volumes:
+      - ./config/service-account-key.json:/app/config/service-account-key.json:ro
+      - backend-logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
+  # Redis cache service (optional)
+  redis:
+    image: redis:7-alpine
+    container_name: smartmeet-redis
+    ports:
+      - "6379:6379"
+    networks:
+      - smartmeet-network
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+
+  # Nginx load balancer (optional for production)
+  nginx:
+    image: nginx:alpine
+    container_name: smartmeet-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx-lb.conf:/etc/nginx/nginx.conf:ro
+      # SSL certificate (for production)
+      # - ./ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - frontend
+      - backend
+    networks:
+      - smartmeet-network
+    restart: unless-stopped
+    profiles:
+      - production
+
+networks:
+  smartmeet-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  backend-logs:
+    driver: local
+  redis-data:
+    driver: local

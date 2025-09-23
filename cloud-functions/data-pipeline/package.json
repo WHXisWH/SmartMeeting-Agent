@@ -1,0 +1,14 @@
+{
+  "name": "smartmeet-data-pipeline",
+  "version": "1.0.0",
+  "description": "SmartMeet データパイプライン Cloud Function",
+  "main": "index.js",
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.3.0",
+    "@google-cloud/pubsub": "^4.7.1",
+    "googleapis": "^128.0.0"
+  },
+  "engines": {
+    "node": "20"
+  }
+}

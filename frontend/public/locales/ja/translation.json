@@ -1,0 +1,257 @@
+{
+  "nav": {
+    "navigation": "ナビゲーション",
+    "dashboard": "ダッシュボード",
+    "activityLog": "アクティビティログ",
+    "teamInsights": "チームインサイト",
+    "knowledge": "ナレッジベース",
+    "gmail": "Gmail",
+    "drive": "ドライブ",
+    "speech": "文字起こし",
+    "settings": "設定"
+  },
+  "dashboard": {
+    "header": {
+      "title": "SmartMeetエージェント",
+      "subtitle": "— あなたのデジタルアシスタント",
+      "proposeMeeting": "会議を提案する",
+      "connectedToGoogle": "Googleに接続済み: {{email}}",
+      "connectToGoogle": "Googleに接続"
+    },
+    "agentStatus": {
+      "title": "エージェントステータス",
+      "running": "🟢 自律実行中",
+      "inactive": "🔴 非アクティブ",
+      "start": "開始",
+      "stop": "停止",
+      "status": "ステータス:",
+      "heroBadge": {
+        "running": "🟢 自律実行中",
+        "waiting": "🟡 指示待機中",
+        "initializing": "🟡 初期化中",
+        "stopped": "🔴 未起動"
+      }
+    },
+    "keyMetrics": {
+      "title": "主要指標",
+      "timeSaved": "節約時間",
+      "meetingsOptimized": "最適化された会議",
+      "conflictsResolved": "解決された競合",
+      "teamSatisfaction": "チーム満足度",
+      "unitHours": "時間"
+    },
+    "kpi": {
+        "timeSaved": "節約された会議時間",
+        "meetingsOptimized": "最適化された会議数",
+        "conflictsResolved": "解決された日程競合",
+        "teamSatisfaction": "チーム満足度",
+        "unitHours": "{{count}} 時間",
+        "unitCount": "{{count}} 個",
+        "unitTimes": "{{count}} 回",
+        "unitSatisfaction": "{{count}}/5"
+    },
+    "activityLog": {
+      "title": "📝 アクティビティログ"
+    },
+    "latestDecision": {
+      "title": "🎯 最新の判断",
+      "action": "🎯 最新の判断: {{action}}",
+      "noDecision": "まだ判断はありません。",
+      "confidence": "信頼度:",
+      "reasoning": "理由:",
+      "noExplanation": "説明がありません。",
+      "alternatives": "検討された代替案:"
+    },
+    "chat": {
+      "title": "💬 エージェントとチャット",
+      "error": "申し訳ありません、エラーが発生しました。",
+      "send": "送信"
+    },
+    "meetingHealth": {
+      "title": "📊 会議の健全性",
+      "health": "健全性",
+      "gap": "不足",
+      "basedOnSatisfaction": "満足度に基づく概算指標"
+    },
+    "decisionHub": {
+      "title": "[!] 確認が必要です",
+      "defaultSuggestion": "提案: 最近の会議スケジュールを確認してください",
+      "defaultReason": "エージェントが最適化を提案していますが、信頼度が低いため、あなたの確認が必要です。",
+      "approved": "承認済み",
+      "rejected": "拒否済み",
+      "promptAction": "修正後のアクション名を入力してください",
+      "promptReason": "修正理由を入力してください",
+      "submitted": "修正を送信しました",
+      "confidence": "信頼度: {{confidence}}%",
+      "approve": "承認",
+      "modify": "修正",
+      "reject": "拒否",
+      "viewReasoning": "完全な推論を表示"
+    },
+    "suggestions": {
+        "title": "🧭 承認待ちの提案",
+        "lastRefreshed": "最終更新: {{time}}",
+        "loading": "読み込み中...",
+        "noSuggestions": "まだ提案はありません。会議の調整などが必要なメールをGmailで受信すると、ここに提案が表示されます。",
+        "noSubject": "（件名なし）",
+        "status": {
+            "pending": "承認待ち",
+            "sent": "候補送信済み",
+            "confirmed": "確定済み 選択肢{{index}}",
+            "needsConfirmation": "相手の確認が必要",
+            "mutualAvailability": "相互に空き時間あり"
+        },
+        "time": "時間: {{start}} 〜 {{end}} ({{timezone}})",
+        "confidence": "信頼度",
+        "candidates": "候補時間帯:",
+        "approvedAndCreated": "承認され、会議が作成されました",
+        "rejected": "提案は拒否されました",
+        "sendCandidates": "候補を参加者に送信",
+        "sendFailed": "送信に失敗しました",
+        "meeting": "会議",
+        "confirmationLinks": "確認リンク（コピーして参加者に送信）:",
+        "copy": "コピー"
+    },
+    "activityStream": {
+        "title": "🕒 リアルタイムアクティビティ"
+    },
+    "calendarPreview": {
+        "title": "📅 カレンダープレビュー",
+        "notConnected": "Googleに接続されていません。右上の「Googleに接続」をクリックしてください。",
+        "noEvents": "最近のイベントはありません",
+        "noTitle": "（タイトルなし）"
+    },
+    "quickCreate": {
+        "title": "⚡ クイック会議作成（Meet付き）",
+        "subject": "件名",
+        "minutes": "{{count}} 分",
+        "timezonePlaceholder": "タイムゾーン（IANA）、例: Asia/Tokyo",
+        "attendeesPlaceholder": "参加者のメールアドレス（カンマ区切り）",
+        "promptStartTime": "開始時間を選択してください",
+        "created": "会議が作成されました",
+        "meetLink": "、Meetリンク: {{link}}",
+        "createFailed": "作成に失敗しました。時間形式と権限を確認してください",
+        "createMeeting": "会議を作成"
+    }
+  },
+  "activityLogPage": {
+    "subtitle": "— アクティビティログ",
+    "user": "ユーザー"
+  },
+  "drivePage": {
+    "subtitle": "— ドライブ",
+    "fileList": "ファイル一覧",
+    "searchPlaceholder": "検索構文 (q)",
+    "search": "検索",
+    "modified": "更新: {{time}}",
+    "uploadFile": "ファイルをアップロード",
+    "fileName": "ファイル名",
+    "selectFilePrompt": "ファイルを選択してください",
+    "uploadSuccess": "アップロードに成功しました",
+    "upload": "アップロード",
+    "fileDetails": "ファイル詳細 / 共有",
+    "open": "開く",
+    "permissionSet": "anyone=reader に設定しました",
+    "setPublic": "公開読み取りに設定"
+  },
+  "gmailPage": {
+    "subtitle": "— Gmail",
+    "inbox": "受信トレイ",
+    "nextPage": "次のページ",
+    "emailDetails": "メールの詳細",
+    "selectEmailPrompt": "メールを選択してください",
+    "compose": "作成",
+    "to": "宛先",
+    "subject": "件名",
+    "htmlBody": "HTML本文",
+    "recipientPrompt": "宛先を入力してください",
+    "sent": "送信済み",
+    "send": "送信",
+    "hello": "<p>こんにちは</p>"
+  },
+  "insightsPage": {
+    "subtitle": "— チームインサイト",
+    "meetingPatterns": "📅 会議パターン分析",
+    "meetingPatternsSuggestion": "チームの会議の40％が木曜日に集中しています。効率を上げるために、会議を分散させることを検討してください。",
+    "decisionBottlenecks": "👥 意思決定のボトルネック特定",
+    "attendeeCount": "参加者数",
+    "decisionBottlenecksSuggestion": "参加者が5人を超えると、意思決定率が著しく低下します。サブトピックに分割するか、参加者を減らすことを検討してください。"
+  },
+  "knowledgePage": {
+    "subtitle": "— ナレッジベース",
+    "title": "📚 ナレッジ一覧",
+    "semanticKnowledge": "知識・Q&A",
+    "proceduralKnowledge": "手順・マニュアル",
+    "episodicKnowledge": "対応履歴・ケーススタディ"
+  },
+  "knowledgeCategories": {
+    "meeting_rules": "会議のルール",
+    "best_practices": "ベストプラクティス",
+    "common_requests": "一般的なリクエスト"
+  },
+  "settingsPage": {
+    "subtitle": "— 設定",
+    "saveSuccess": "設定を保存しました（ローカルストレージ）。バックエンドポリシー連携は後で接続できます。",
+    "autonomyLevel": "🧭 自律レベル",
+    "level1": "L1: 提案のみ",
+    "level2": "L2: 半自律",
+    "level3": "L3: 完全自律",
+    "decisionPreferences": "⚙️ 意思決定の好み",
+    "autoCancel": "非効率な会議の自動キャンセルを許可する",
+    "autoReschedule": "競合する会議の自律的な再スケジュールを許可する",
+    "notifyOnBlockers": "タスクがブロックされたときに担当者に積極的に通知することを許可する",
+    "saveSettings": "設定を保存"
+  },
+  "speechPage": {
+    "subtitle": "— 音声文字起こし",
+    "realtimeTab": "リアルタイム音声文字起こし",
+    "uploadTab": "音声ファイルをアップロード",
+    "realtimeDescription": "マイクを介したリアルタイムの録音と文字起こし。会議やインタビューなどのライブシーンに適しています。",
+    "unsupportedRecording": "現在のブラウザは録音をサポートしていません",
+    "noContent": "（コンテンツなし）",
+    "unsupportedWebSpeech": "（お使いのブラウザはWeb Speech APIに非対応のため、リアルタイム字幕は利用できません）",
+    "startRecording": "録音を開始",
+    "stopAndTranscribe": "停止して文字起こし",
+    "duration": "録音時間：{{seconds}}秒",
+    "language": "言語：",
+    "captionSupport": "ブラウザのリアルタイム字幕サポート：",
+    "available": "利用可能",
+    "unavailable": "利用不可",
+    "liveCaptions": "リアルタイム字幕",
+    "liveCaptionsPlaceholder": "（録音を開始すると、開始から現在までの認識テキストが継続的に表示されます）",
+    "uploadDescription": "ローカルの音声ファイルをアップロードして文字起こしを行います。WAV、MP3、M4Aなどの一般的な形式をサポートしています。",
+    "selectAudioFile": "音声ファイルを選択してください",
+    "transcribing": "文字起こし中...",
+    "startTranscription": "文字起こしを開始",
+    "transcriptionResult": "文字起こし結果",
+    "resultPlaceholder": "（最終的な文字起こし結果はここに表示されます）",
+    "openMinutes": "生成された議事録を開く（Googleドキュメント）",
+    "noValidContent": "有効な文字起こしコンテンツがありません",
+    "generationFailed": "議事録の生成に失敗しました。Googleに接続していることを確認して、後でもう一度お試しください",
+    "generateMinutes": "議事録を生成",
+    "generateMindMap": "🧠 マインドマップを生成",
+    "mindMapFailed": "マインドマップの生成に失敗しました"
+  },
+  "proposalModal": {
+    "title": "会議提案プレビュー",
+    "subject": "件名：",
+    "attendees": "参加者（カンマ区切り）：",
+    "duration": "期間（分）：",
+    "window": "時間枠（時間）：",
+    "candidates": "候補数：",
+    "generating": "生成中...",
+    "generate": "提案を生成",
+    "candidateSlots": "候補時間帯",
+    "noSlots": "適切な時間帯が見つかりませんでした。パラメータを調整して再生成してください",
+    "materials": "関連資料（任意）",
+    "noFiles": "関連ファイルが見つかりませんでした",
+    "close": "閉じる",
+    "creating": "作成中...",
+    "confirm": "確認して作成",
+    "generationFailed": "提案の生成に失敗しました",
+    "selectSlot": "時間帯を選択してください",
+    "meeting": "会議",
+    "createSuccess": "会議が作成され、確認メールが送信されました",
+    "createFailed": "作成に失敗しました"
+  }
+}

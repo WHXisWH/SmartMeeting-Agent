@@ -1,0 +1,402 @@
+{
+  "displayName": "SmartMeet AI エージェント",
+  "description": "日本語対応の会議管理・意思決定支援 AI エージェント",
+  "defaultLanguageCode": "ja",
+  "timeZone": "Asia/Tokyo",
+  "agentSettings": {
+    "enableStackdriverLogging": true,
+    "enableSpellCheck": true,
+    "enableAutoSpellCheck": true
+  },
+  "instructions": "あなたは日本企業向けの会議管理・意思決定支援 AI エージェントです。\n\n主な役割:\n1. 会議スケジュール管理と最適化\n2. Gmail メール分析による会議準備\n3. Google Drive 文書検索・要約\n4. データ分析に基づく意思決定支援\n5. 複合的な情報分析とインサイト提供\n\n常に丁寧で専門的な日本語で応答し、ビジネス効率化を支援してください。",
+  "tools": [
+    {
+      "name": "calendar_tool",
+      "displayName": "カレンダーツール",
+      "description": "会議の取得、作成、更新、削除、衝突検出、パターン分析を行います",
+      "webhook": {
+        "url": "https://asia-northeast1-smartmeet-470807.cloudfunctions.net/calendarTool",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "actions": [
+        {
+          "name": "get_events",
+          "description": "指定期間の会議イベントを取得",
+          "parameters": {
+            "timeMin": {
+              "type": "string",
+              "description": "開始日時 (ISO 8601 形式)"
+            },
+            "timeMax": {
+              "type": "string",
+              "description": "終了日時 (ISO 8601 形式)"
+            },
+            "maxResults": {
+              "type": "integer",
+              "description": "最大取得件数",
+              "default": 50
+            }
+          }
+        },
+        {
+          "name": "detect_conflicts",
+          "description": "会議時間の衝突を検出",
+          "parameters": {
+            "timeMin": {
+              "type": "string",
+              "description": "検索開始日時"
+            },
+            "timeMax": {
+              "type": "string",
+              "description": "検索終了日時"
+            },
+            "participants": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "参加者メールアドレス"
+            }
+          }
+        },
+        {
+          "name": "create_meeting",
+          "description": "新しい会議を作成",
+          "parameters": {
+            "title": {
+              "type": "string",
+              "description": "会議タイトル"
+            },
+            "description": {
+              "type": "string",
+              "description": "会議説明"
+            },
+            "startTime": {
+              "type": "string",
+              "description": "開始日時"
+            },
+            "endTime": {
+              "type": "string",
+              "description": "終了日時"
+            },
+            "attendees": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "参加者メールアドレス"
+            },
+            "organizer": {
+              "type": "string",
+              "description": "主催者メールアドレス"
+            },
+            "location": {
+              "type": "string",
+              "description": "会議場所"
+            }
+          }
+        },
+        {
+          "name": "analyze_patterns",
+          "description": "会議パターンを分析",
+          "parameters": {
+            "timeMin": {
+              "type": "string",
+              "description": "分析開始日時"
+            },
+            "timeMax": {
+              "type": "string",
+              "description": "分析終了日時"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "gmail_tool",
+      "displayName": "Gmail ツール",
+      "description": "メール検索、会議関連メール分析、メール送信を行います",
+      "webhook": {
+        "url": "https://asia-northeast1-smartmeet-470807.cloudfunctions.net/gmailTool",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "actions": [
+        {
+          "name": "search_emails",
+          "description": "メールを検索",
+          "parameters": {
+            "query": {
+              "type": "string",
+              "description": "検索クエリ"
+            },
+            "maxResults": {
+              "type": "integer",
+              "description": "最大取得件数",
+              "default": 20
+            },
+            "dateRange": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string",
+                  "description": "開始日"
+                },
+                "end": {
+                  "type": "string",
+                  "description": "終了日"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "get_meeting_emails",
+          "description": "会議関連メールを取得",
+          "parameters": {
+            "timeRange": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string"
+                },
+                "end": {
+                  "type": "string"
+                }
+              }
+            },
+            "meetingId": {
+              "type": "string",
+              "description": "特定の会議ID"
+            }
+          }
+        },
+        {
+          "name": "analyze_email_thread",
+          "description": "メールスレッドを分析",
+          "parameters": {
+            "threadId": {
+              "type": "string",
+              "description": "スレッドID"
+            }
+          }
+        },
+        {
+          "name": "get_email_insights",
+          "description": "メールインサイトを取得",
+          "parameters": {
+            "timeRange": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string"
+                },
+                "end": {
+                  "type": "string"
+                }
+              }
+            },
+            "analysisType": {
+              "type": "string",
+              "description": "分析タイプ",
+              "default": "comprehensive"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "drive_tool",
+      "displayName": "Drive ツール",
+      "description": "Google Drive 文書の検索、分析、要約、Vector Search 連携を行います",
+      "webhook": {
+        "url": "https://asia-northeast1-smartmeet-470807.cloudfunctions.net/driveTool",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "actions": [
+        {
+          "name": "search_documents",
+          "description": "文書を検索",
+          "parameters": {
+            "query": {
+              "type": "string",
+              "description": "検索クエリ"
+            },
+            "fileTypes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "ファイルタイプ",
+              "default": ["application/vnd.google-apps.document", "application/pdf"]
+            },
+            "maxResults": {
+              "type": "integer",
+              "description": "最大取得件数",
+              "default": 20
+            }
+          }
+        },
+        {
+          "name": "analyze_document",
+          "description": "文書を分析",
+          "parameters": {
+            "documentId": {
+              "type": "string",
+              "description": "文書ID"
+            },
+            "analysisType": {
+              "type": "string",
+              "description": "分析タイプ",
+              "default": "comprehensive"
+            }
+          }
+        },
+        {
+          "name": "generate_summary",
+          "description": "文書の要約を生成",
+          "parameters": {
+            "documentId": {
+              "type": "string",
+              "description": "文書ID"
+            },
+            "summaryType": {
+              "type": "string",
+              "description": "要約タイプ",
+              "default": "executive"
+            },
+            "maxLength": {
+              "type": "integer",
+              "description": "最大文字数",
+              "default": 500
+            }
+          }
+        },
+        {
+          "name": "find_related_documents",
+          "description": "関連文書を検索",
+          "parameters": {
+            "query": {
+              "type": "string",
+              "description": "検索クエリ"
+            },
+            "documentId": {
+              "type": "string",
+              "description": "基準文書ID"
+            },
+            "maxResults": {
+              "type": "integer",
+              "description": "最大取得件数",
+              "default": 10
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "decision_tool",
+      "displayName": "意思決定ツール",
+      "description": "複合データ分析による意思決定支援、優先度判定、リスク評価を行います",
+      "webhook": {
+        "url": "https://asia-northeast1-smartmeet-470807.cloudfunctions.net/decisionTool",
+        "method": "POST",
+        "headers": {
+          "Content-Type": "application/json"
+        }
+      },
+      "actions": [
+        {
+          "name": "analyze_situation",
+          "description": "状況を分析",
+          "parameters": {
+            "context": {
+              "type": "string",
+              "description": "分析対象の状況説明"
+            },
+            "timeRange": {
+              "type": "object",
+              "properties": {
+                "start": {
+                  "type": "string"
+                },
+                "end": {
+                  "type": "string"
+                }
+              }
+            },
+            "analysisDepth": {
+              "type": "string",
+              "description": "分析の深さ",
+              "default": "comprehensive"
+            }
+          }
+        },
+        {
+          "name": "generate_recommendations",
+          "description": "推奨アクションを生成",
+          "parameters": {
+            "situationId": {
+              "type": "string",
+              "description": "状況分析ID"
+            },
+            "constraints": {
+              "type": "object",
+              "description": "制約条件"
+            },
+            "preferences": {
+              "type": "object",
+              "description": "優先事項"
+            }
+          }
+        },
+        {
+          "name": "assess_priority",
+          "description": "優先度を評価",
+          "parameters": {
+            "items": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "description": "評価対象アイテム"
+            },
+            "context": {
+              "type": "string",
+              "description": "評価コンテキスト"
+            }
+          }
+        },
+        {
+          "name": "cross_data_analysis",
+          "description": "横断データ分析",
+          "parameters": {
+            "analysisType": {
+              "type": "string",
+              "description": "分析タイプ"
+            },
+            "dataSources": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "データソース",
+              "default": ["meetings", "emails", "documents"]
+            },
+            "question": {
+              "type": "string",
+              "description": "分析したい質問"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

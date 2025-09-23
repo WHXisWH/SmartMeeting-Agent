@@ -1,0 +1,5 @@
+google-cloud-aiplatform[agent_engines,langchain]>=1.111.0
+langchain-google-vertexai>=1.0.0
+langgraph>=0.1.0
+requests>=2.25.0
+typing-extensions>=4.0.0

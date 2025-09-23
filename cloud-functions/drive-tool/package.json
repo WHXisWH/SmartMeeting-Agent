@@ -1,0 +1,14 @@
+{
+  "name": "smartmeet-drive-tool",
+  "version": "1.0.0",
+  "description": "SmartMeet Drive ツール Cloud Function",
+  "main": "index.js",
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.3.0",
+    "@google-cloud/aiplatform": "^3.24.0",
+    "googleapis": "^128.0.0"
+  },
+  "engines": {
+    "node": "20"
+  }
+}

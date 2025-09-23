@@ -1,0 +1,13 @@
+{
+  "name": "smartmeet-calendar-tool",
+  "version": "1.0.0",
+  "description": "SmartMeet カレンダーツール Cloud Function",
+  "main": "index.js",
+  "dependencies": {
+    "@google-cloud/bigquery": "^7.3.0",
+    "googleapis": "^128.0.0"
+  },
+  "engines": {
+    "node": "20"
+  }
+}

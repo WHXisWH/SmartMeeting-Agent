@@ -1,0 +1,72 @@
+{
+  "displayName": "SmartMeet Overview",
+  "gridLayout": {
+    "columns": 2,
+    "widgets": [
+      {
+        "title": "Gmail Push (count)",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"logging.googleapis.com/user/event_gmail_push\""
+                }
+              },
+              "plotType": "LINE"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {"label": "count", "scale": "LINEAR"}
+        }
+      },
+      {
+        "title": "Calendar Watch (count)",
+        "xyChart": {
+          "dataSets": [
+            {
+              "timeSeriesQuery": {
+                "timeSeriesFilter": {
+                  "filter": "metric.type=\"logging.googleapis.com/user/event_calendar_watch\""
+                }
+              },
+              "plotType": "LINE"
+            }
+          ],
+          "timeshiftDuration": "0s",
+          "yAxis": {"label": "count", "scale": "LINEAR"}
+        }
+      },
+      {
+        "title": "Tasks (success vs failure)",
+        "xyChart": {
+          "dataSets": [
+            {"timeSeriesQuery": {"timeSeriesFilter": {"filter": "metric.type=\"logging.googleapis.com/user/task_success\""}}, "plotType": "LINE"},
+            {"timeSeriesQuery": {"timeSeriesFilter": {"filter": "metric.type=\"logging.googleapis.com/user/task_failure\""}}, "plotType": "LINE"}
+          ],
+          "yAxis": {"label": "count", "scale": "LINEAR"}
+        }
+      },
+      {
+        "title": "Suggestions (pending/sent)",
+        "xyChart": {
+          "dataSets": [
+            {"timeSeriesQuery": {"timeSeriesFilter": {"filter": "metric.type=\"logging.googleapis.com/user/suggestion_pending\""}}, "plotType": "LINE"},
+            {"timeSeriesQuery": {"timeSeriesFilter": {"filter": "metric.type=\"logging.googleapis.com/user/suggestion_auto_sent\""}}, "plotType": "LINE"}
+          ],
+          "yAxis": {"label": "count", "scale": "LINEAR"}
+        }
+      },
+      {
+        "title": "Meetings Created",
+        "xyChart": {
+          "dataSets": [
+            {"timeSeriesQuery": {"timeSeriesFilter": {"filter": "metric.type=\"logging.googleapis.com/user/meeting_created\""}}, "plotType": "LINE"}
+          ],
+          "yAxis": {"label": "count", "scale": "LINEAR"}
+        }
+      }
+    ]
+  }
+}
+

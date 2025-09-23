@@ -1,0 +1,20 @@
+{
+  "name": "smartmeet-vertex-ai-config",
+  "version": "1.0.0",
+  "description": "SmartMeet Vertex AI Agent Builder 設定",
+  "main": "create-agent.js",
+  "scripts": {
+    "create-agent": "node create-agent.js",
+    "test-webhooks": "node test-webhooks.js",
+    "test-calendar": "node test-webhooks.js --calendar",
+    "generate-config": "node test-webhooks.js --config"
+  },
+  "dependencies": {
+    "@google-cloud/dialogflow-cx": "^4.7.0",
+    "@google-cloud/resource-manager": "^5.3.0",
+    "axios": "^1.6.0"
+  },
+  "engines": {
+    "node": "20"
+  }
+}

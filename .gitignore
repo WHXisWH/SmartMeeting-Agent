@@ -1,0 +1,52 @@
+# Root ignores
+.DS_Store
+Thumbs.db
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+*.tsbuildinfo
+coverage/
+.cache/
+
+# Mono-repo node
+node_modules/
+dist/
+build/
+
+# Env files (keep examples)
+.env
+.env.*
+!*.example
+
+# Backend env and outputs
+backend/.env
+backend/.env.*
+!backend/.env.example
+backend/dist/
+backend/.s4.out
+backend/.s5.out
+backend/.s4.pid
+backend/.s5.pid
+
+# Root-level local PID files from stage tests
+.s4.pid
+.s5.pid
+
+# Frontend env and outputs
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+frontend/dist/
+
+# Secrets
+backend/config/service-account-key.json
+
+# Archive/Training files
+backend/archive/
+
+# Tooling/IDE
+.claude/
+.vscode/
+.idea/
+.vercel/

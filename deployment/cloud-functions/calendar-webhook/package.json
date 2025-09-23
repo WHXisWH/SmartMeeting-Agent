@@ -1,0 +1,17 @@
+{
+  "name": "smartmeet-calendar-webhook",
+  "version": "1.0.0",
+  "description": "SmartMeet AI Agent Calendar Webhook Handler",
+  "main": "index.js",
+  "scripts": {
+    "start": "functions-framework --target=handleCalendarWebhook"
+  },
+  "dependencies": {
+    "@google-cloud/functions-framework": "^3.3.0",
+    "@google-cloud/firestore": "^7.1.0",
+    "@google-cloud/pubsub": "^4.0.7"
+  },
+  "engines": {
+    "node": "18"
+  }
+}

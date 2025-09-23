@@ -1,0 +1,22 @@
+{
+  "displayName": "SmartMeet - Task Failure Spike",
+  "combiner": "OR",
+  "conditions": [
+    {
+      "displayName": "task_failure > 5 in 5m",
+      "conditionThreshold": {
+        "filter": "metric.type=\"logging.googleapis.com/user/task_failure\"",
+        "comparison": "COMPARISON_GT",
+        "thresholdValue": 5,
+        "duration": "300s",
+        "trigger": {"count": 1},
+        "aggregations": [
+          {"alignmentPeriod": "60s", "perSeriesAligner": "ALIGN_DELTA"}
+        ]
+      }
+    }
+  ],
+  "notificationChannels": [],
+  "enabled": true
+}
+
