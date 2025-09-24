@@ -465,8 +465,15 @@ const AgentDashboard: React.FC = () => {
                           </div>
                         )}
                         <div style={{ marginTop: 8, display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-                          <button style={{ ...buttonStyle, background: '#28a745', color: 'white' }}
-                            disabled={!(Array.isArray(s.candidates) && s.candidates.length > 0)}
+                          {(() => {
+                            const autoProposeThreshold = Number(import.meta.env.VITE_AUTO_PROPOSE_THRESHOLD || 0.8);
+                            const hasCandidates = Array.isArray(s.candidates) && s.candidates.length > 0;
+                            const attendees = Array.isArray(s.proposal?.attendees) ? s.proposal.attendees : [];
+                            const canApprove = hasCandidates && attendees.length > 0;
+                            const disabledStyle: React.CSSProperties = canApprove ? {} : { background: '#adb5bd', border: '1px solid #ced4da', cursor: 'not-allowed', opacity: 0.6 };
+                            return (
+                              <button style={{ ...buttonStyle, background: '#28a745', color: 'white', ...disabledStyle }}
+                                disabled={!canApprove}
                             onClick={async () =>{
                             const idx = (s as any)._selectedIdx ?? 0;
                             const payload = Array.isArray(s.candidates) && s.candidates[idx] ? {
@@ -488,6 +495,8 @@ const AgentDashboard: React.FC = () => {
                               alert(t('dashboard.suggestions.sendFailed'));
                             }
                           }}>{t('dashboard.decisionHub.approve')}</button>
+                            );
+                          })()}
                           <button style={{ ...buttonStyle, background: '#dc3545', color: 'white' }} onClick={async () =>{
                             await rejectSuggestion(s.id);
                             console.log(t('dashboard.suggestions.rejected'));
@@ -517,6 +526,21 @@ const AgentDashboard: React.FC = () => {
                             }}>{t('dashboard.suggestions.sendCandidates')}</button>
                           )}
                         </div>
+                        {(() => {
+                          const autoProposeThreshold = Number(import.meta.env.VITE_AUTO_PROPOSE_THRESHOLD || 0.8);
+                          const hasCandidates = Array.isArray(s.candidates) && s.candidates.length > 0;
+                          if (hasCandidates) return null;
+                          if (typeof s.confidence !== 'number') return null;
+                          if (s.confidence >= autoProposeThreshold) return null;
+                          const conf = Math.round((s.confidence || 0) * 100);
+                          const thr = Math.round(autoProposeThreshold * 100);
+                          return (
+                            <div style={{ marginTop: 6, fontSize: 12, color: '#6c757d' }}>
+                              <div>Confidence {conf}% is below the auto-propose threshold ({thr}%). Please review and either send candidates or create a meeting manually.</div>
+                              <div>信頼度 {conf}% は自動提案のしきい値（{thr}%）を下回っています。内容をご確認の上、候補送信または手動で会議作成をご検討ください。</div>
+                            </div>
+                          );
+                        })()}
                         {Array.isArray((s as any)._links) && (s as any)._links.length > 0 && (
                           <div style={{ marginTop: 8, background: '#f8f9fa', border: '1px solid #e9ecef', borderRadius: 6, padding: 8 }}>
                             <div style={{ fontSize: 12, color: '#6c757d', marginBottom: 4 }}>{t('dashboard.suggestions.confirmationLinks')}</div>
