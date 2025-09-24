@@ -151,10 +151,14 @@ export function minutesRoutes(): Router {
           try {
             const attendees = (target.attendees || []).map((a:any)=>a.email).filter(Boolean);
             if (attendees.length) {
-              const extra = [ `<a href=\"${file.data.webViewLink}\">Docs</a>` ];
-              if (slidesLink) extra.push(`<a href=\"${slidesLink}\">Slides</a>`);
-              if (sheetLink) extra.push(`<a href=\"${sheetLink}\">Action Items</a>`);
-              const html = `<p>Meeting minutes have been generated:</p><p>${extra.join(' &nbsp; ')}</p>`;
+          const extra = [ `<a href=\"${file.data.webViewLink}\">Docs / ドキュメント</a>` ];
+          if (slidesLink) extra.push(`<a href=\"${slidesLink}\">Slides / スライド</a>`);
+          if (sheetLink) extra.push(`<a href=\"${sheetLink}\">Action Items / アクションアイテム</a>`);
+          const html = `
+            <p>Meeting minutes have been generated.</p>
+            <p>議事録が作成されました。</p>
+            <p>${extra.join(' &nbsp; ')}</p>
+          `;
               const rawLines = [ `To: ${attendees.join(',')}`, `Subject: Meeting Minutes` , 'MIME-Version: 1.0', 'Content-Type: text/html; charset=UTF-8', '', html ];
               const raw = Buffer.from(rawLines.join('\r\n')).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
               await gmail.users.messages.send({ userId: 'me', requestBody: { raw } });
@@ -199,8 +203,13 @@ export function minutesRoutes(): Router {
           for (const owner of owners) {
             try {
               const itemsHtml = grouped[owner].map(x => `<li>${x.title}${x.due ? ` (due: ${x.due})` : ''}${x.notes ? ` — ${x.notes}` : ''}</li>`).join('');
-              const linksHtml = [ file?.data?.webViewLink ? `<a href=\"${file.data.webViewLink}\">Minutes</a>` : '', sheetLink ? `<a href=\"${sheetLink}\">Action Items</a>` : '' ].filter(Boolean).join(' &nbsp; ');
-              const html = `<p>You have new action items from the meeting.</p><ul>${itemsHtml}</ul>${linksHtml ? `<p>${linksHtml}</p>` : ''}`;
+              const linksHtml = [ file?.data?.webViewLink ? `<a href=\"${file.data.webViewLink}\">Minutes / 議事録</a>` : '', sheetLink ? `<a href=\"${sheetLink}\">Action Items / アクションアイテム</a>` : '' ].filter(Boolean).join(' &nbsp; ');
+              const html = `
+                <p>You have new action items from the meeting.</p>
+                <p>会議から新しいアクションアイテムがあります。</p>
+                <ul>${itemsHtml}</ul>
+                ${linksHtml ? `<p>${linksHtml}</p>` : ''}
+              `;
               const rawLines = [ `To: ${owner}`, `Subject: New Action Items`, 'MIME-Version: 1.0', 'Content-Type: text/html; charset=UTF-8', '', html ];
               const raw = Buffer.from(rawLines.join('\r\n')).toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
               await gmail.users.messages.send({ userId: 'me', requestBody: { raw } });

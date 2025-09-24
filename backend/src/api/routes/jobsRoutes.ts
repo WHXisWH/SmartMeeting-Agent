@@ -204,7 +204,11 @@ export function jobsRoutes(): Router {
               // Notify attendees
               try {
                 const link = (await drive.files.get({ fileId: docId, fields: 'webViewLink' })).data.webViewLink || '';
-                const html = `<p>Meeting minutes are ready.</p><p><a href=\"${link}\">Minutes (Docs)</a></p>`;
+                const html = `
+                  <p>Meeting minutes are ready.</p>
+                  <p>議事録の準備ができました。</p>
+                  <p><a href=\"${link}\">Minutes (Docs) / 議事録（ドキュメント）</a></p>
+                `;
                 await svc.sendEmail(attendees, `Minutes: ${subject}`, html);
               } catch {}
 

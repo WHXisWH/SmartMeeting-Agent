@@ -261,7 +261,11 @@ export function agentRoutes(agentBrain: any, vertexAgentService: VertexAgentServ
         // Notify attendees
         try {
           const link = (await drive.files.get({ fileId: docId, fields: 'webViewLink' })).data.webViewLink || '';
-          const html = `<p>Meeting has been confirmed.</p><p><a href=\"${link}\">Agenda (Docs)</a></p>`;
+          const html = `
+            <p>Meeting has been confirmed.</p>
+            <p>会議が確定しました。</p>
+            <p><a href=\"${link}\">Agenda (Docs) / アジェンダ（ドキュメント）</a></p>
+          `;
           await svc.sendEmail(usedAtt, usedSubject || 'Meeting', html);
         } catch {}
 
@@ -706,12 +710,13 @@ export function agentRoutes(agentBrain: any, vertexAgentService: VertexAgentServ
         url: baseUrl ? `${baseUrl}/api/agent/meetings/confirm-link?subject=${encodeURIComponent(subject||'Meeting')}&start=${encodeURIComponent(s.start)}&end=${encodeURIComponent(s.end)}&timezone=${encodeURIComponent(tz)}&attendees=${encodeURIComponent((attendees||[]).join(','))}` : ''
       }));
       const html = `
-        <p>Please select a preferred meeting time:</p>
+        <p>Please select a preferred meeting time.</p>
+        <p>ご希望の候補時間をお選びください。</p>
         <ul>
-          ${links.map((l:any)=>`<li>${l.idx}. ${l.start} - ${l.end}${l.url ? ` — <a href="${l.url}">Confirm</a>`: ''}</li>`).join('')}
+          ${links.map((l:any)=>`<li>${l.idx}. ${l.start} - ${l.end}${l.url ? ` — <a href="${l.url}">Confirm / 確定</a>`: ''}</li>`).join('')}
         </ul>
       `;
-      await svc.sendEmail(attendees, subject || 'Meeting Options', html);
+      await svc.sendEmail(attendees, subject || 'Meeting Options / 候補時間', html);
       try {
         if (suggestionId) {
           const { Firestore } = await import('@google-cloud/firestore');
