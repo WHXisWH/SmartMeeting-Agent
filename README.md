@@ -20,7 +20,7 @@
 
 ```mermaid
 graph TB
-  U["レビュアー（Google アカウント）"] -->|"Google ログイン"| FE["Vercel フロントエンド"]
+  U["ユーザー / User（Google アカウント）"] -->|"Google ログイン"| FE["Vercel フロントエンド"]
   FE -->|"/auth/login"| OA[("Google OAuth")]
   OA -->|"/auth/callback"| BE["Cloud Run バックエンド Express"]
   BE -->|"トークン保存"| FS[("Firestore: oauth_tokens/{email}")]
@@ -49,7 +49,7 @@ graph TB
 
 ```mermaid
 sequenceDiagram
-  participant U as レビュアー
+  participant U as ユーザー / User
   participant FE as フロントエンド (Vercel)
   participant OA as Google OAuth
   participant BE as バックエンド (Cloud Run)
