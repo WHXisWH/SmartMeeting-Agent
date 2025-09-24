@@ -28,9 +28,9 @@ ENV PORT=8080
 # Expose port
 EXPOSE 8080
 
-# Health check
+# Health check (avoid triggering Vertex AI). Use /metrics which is lightweight.
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/health || exit 1
+  CMD wget --no-verbose --tries=1 --spider http://localhost:8080/metrics || exit 1
 
 # Start the application
 CMD ["npm", "start"]

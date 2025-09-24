@@ -18,52 +18,52 @@ const vertexAgentService = new VertexAgentService();
 export function setupRoutes(app: Express, agentBrain: any): void {
   const apiPrefix = '/api';
 
-  // Enhanced health check endpoint for Stage 1 verification
+  // Lightweight health endpoint: does not ping Vertex AI by default
   app.get('/health', async (req, res) => {
     const timestamp = new Date().toISOString();
     const agentInitStatus = agentBrain.getInitializationStatus();
-    
+
+    // Config readiness flags
+    const baseUrl = process.env.BACKEND_BASE_URL || process.env.WEBHOOK_BASE_URL || '';
+    const backendBaseUrlConfigured = Boolean(baseUrl && /^https?:\/\//.test(baseUrl));
+    let oauthReady = false;
     try {
-      // Stage 1 验收标准：获得 agent_builder: reachable 响应
-      const agentBuilderStatus = await vertexAgentService.pingAgentBuilder();
-      // Config readiness
-      const baseUrl = process.env.BACKEND_BASE_URL || process.env.WEBHOOK_BASE_URL || '';
-      const backendBaseUrlConfigured = Boolean(baseUrl && /^https?:\/\//.test(baseUrl));
-      let oauthReady = false;
+      const email = process.env.DEFAULT_USER_EMAIL || '';
+      if (email) {
+        const { Firestore } = await import('@google-cloud/firestore');
+        const db = new Firestore();
+        const snap = await db.collection('oauth_tokens').doc(email).get();
+        const data = snap.exists ? (snap.data() as any) : null;
+        oauthReady = Boolean(data?.refresh_token);
+      }
+    } catch {}
+
+    // Optional Vertex ping (off by default to avoid unintended cost)
+    const shouldPingVertex = String(process.env.HEALTH_PING_VERTEX || '').toLowerCase() === 'true';
+    let agentBuilderStatus: any = { status: 'skipped' };
+    if (shouldPingVertex) {
       try {
-        const email = process.env.DEFAULT_USER_EMAIL || '';
-        if (email) {
-          const { Firestore } = await import('@google-cloud/firestore');
-          const db = new Firestore();
-          const snap = await db.collection('oauth_tokens').doc(email).get();
-          const data = snap.exists ? (snap.data() as any) : null;
-          oauthReady = Boolean(data?.refresh_token);
-        }
-      } catch {}
-      
-      res.status(200).json({ 
-        status: 'healthy', 
-        timestamp,
-        agent_builder: agentBuilderStatus.status, // 第1阶段验收关键字段
-        vertex_ai: vertexAgentService.getStatus(),
-        legacy_agent: {
-          initialized: agentInitStatus.initialized,
-          initializing: agentInitStatus.initializing,
-          error: agentInitStatus.error
-        },
-        readiness: {
-          backend_base_url_configured: backendBaseUrlConfigured,
-          oauth_ready: oauthReady
-        }
-      });
-    } catch (error) {
-      res.status(200).json({ 
-        status: 'healthy', 
-        timestamp,
-        agent_builder: 'error', // 第1阶段验收关键字段
-        error: (error as Error).message
-      });
+        agentBuilderStatus = await vertexAgentService.pingAgentBuilder();
+      } catch (error) {
+        agentBuilderStatus = { status: 'error', message: (error as Error).message };
+      }
     }
+
+    res.status(200).json({
+      status: 'healthy',
+      timestamp,
+      agent_builder: agentBuilderStatus.status,
+      vertex_ai: vertexAgentService.getStatus(),
+      legacy_agent: {
+        initialized: agentInitStatus.initialized,
+        initializing: agentInitStatus.initializing,
+        error: agentInitStatus.error
+      },
+      readiness: {
+        backend_base_url_configured: backendBaseUrlConfigured,
+        oauth_ready: oauthReady
+      }
+    });
   });
 
   // Stage 1 验收端点：Agent Builder ping test
