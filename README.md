@@ -404,5 +404,3 @@ graph TB
 ```
 
 ---
-
-For operational variables, URLs, and commands, see `backend/OPERATIONS-RUNBOOK.md`.
